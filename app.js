@@ -21,3 +21,13 @@ const list = new ToDoList(todos);
 list.appendTo();
 
 const pomodoro = new Pomodoro();
+
+const notesInStorage = localStorage.getItem("notes")?.toString();
+
+const notes = document.getElementById("notes");
+if (notesInStorage) {
+  notes.value = notesInStorage;
+}
+notes.addEventListener("change", (e) => {
+  localStorage.setItem("notes", e.target.value);
+});

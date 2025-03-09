@@ -16,6 +16,7 @@ h2 {
   font-size: 18px;
   margin: 0;
   margin-top: 12px;
+  font-weight: 600;
 }
 
 p {
@@ -49,7 +50,26 @@ button.secondary:hover {
   background-color: #f0f0f0;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  gap: 40px;
+  flex: 1;
+  height: 100vh;
+}
+
 .pomodoro-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding: 20px;
 
   .pomodoro {
@@ -57,9 +77,28 @@ button.secondary:hover {
     flex-direction: column;
     gap: 12px;
 
+    .tag {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      gap: 4px;
+      justify-content: center;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 2px 8px;
+      width: fit-content;
+
+      .indicator {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+    }
+
     #pomodoro-value {
       font-size: 40px;
       font-weight: bold;
+      text-align: center;
     }
 
     #gauge {
@@ -78,14 +117,27 @@ button.secondary:hover {
   }
 }
 
+.note-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+
+  textarea {
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    min-height: 200px;
+    resize: vertical;
+  }
+}
+
 .todolist-main {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 800px;
+  max-width: 600px;
   flex: 1;
   padding: 20px;
 
@@ -111,7 +163,7 @@ button.secondary:hover {
         width: 20px;
         height: 20px;
         border: 1px solid #ccc;
-        accent-color: #555;
+        accent-color: #000;
         cursor: pointer;
         border-radius: 4px;
       }

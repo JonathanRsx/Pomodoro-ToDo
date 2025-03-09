@@ -15,43 +15,57 @@
     <script src="./app.js" type="module"></script>
   </head>
   <body>
-    <section id="pomodoro-main" class="pomodoro-main">
-      <h1>Pomodoro</h1>
-      <template id="pomodoro-template">
-        <div id="pomodoro" class="pomodoro">
-          <p id="session">Focus</p>
-          <span id="pomodoro-value"></span>
-          <div id="gauge">
-            <div id="progress"></div>
-          </div>
-          <button id="start">Start</button>
-          <button id="pause" hidden>Pause</button>
-          <button id="skip" class="secondary" hidden>Skip</button>
-        </div>
-      </template>
-    </section>
-    <section class="todolist-main" id="todolist">
-      <h1>To Do list</h1>
-      <h2>To Do</h2>
-      <ul id="list-not-completed" class="todo-list"></ul>
-      <button id="add-todo" class="add-todo">Add to do</button>
-      <!-- Tâches complétées -->
-      <h2>Done</h2>
-      <ul id="list-completed" class="todo-list completed"></ul>
+    <main>
+      <section class="todolist-main" id="todolist">
+        <h1>To Do list</h1>
+        <h2>To Do</h2>
+        <ul id="list-not-completed" class="todo-list"></ul>
+        <button id="add-todo" class="add-todo">Add to do</button>
+        <!-- Tâches complétées -->
+        <h2>Done</h2>
+        <ul id="list-completed" class="todo-list completed"></ul>
 
-      <template id="todolist-item">
-        <li class="todo-item">
-          <input type="checkbox" name="todo-checkbox" id="todo-checkbox" />
-          <input
-            type="text"
-            name="todo-item"
-            id="todo-item"
-            placeholder="To Do"
-            autocomplete="off"
-          />
-          <button class="remove">&#x2716;</button>
-        </li>
-      </template>
-    </section>
+        <template id="todolist-item">
+          <li class="todo-item">
+            <input type="checkbox" name="todo-checkbox" id="todo-checkbox" />
+            <input
+              type="text"
+              name="todo-item"
+              id="todo-item"
+              placeholder="To Do"
+              autocomplete="off"
+            />
+            <button class="remove">&#x2716;</button>
+          </li>
+        </template>
+      </section>
+      <div class="right">
+        <section id="pomodoro-main" class="pomodoro-main">
+          <h1>Pomodoro</h1>
+          <template id="pomodoro-template">
+            <div id="pomodoro" class="pomodoro">
+              <span style="display: inline-flex; align-items: center; gap: 8px"
+                >Session:
+                <div class="tag">
+                  <div class="indicator"></div>
+                  <p id="session">Focus</p>
+                </div>
+              </span>
+              <span id="pomodoro-value"></span>
+              <div id="gauge">
+                <div id="progress"></div>
+              </div>
+              <button id="start">Start</button>
+              <button id="pause" hidden>Pause</button>
+              <button id="skip" class="secondary" hidden>Skip</button>
+            </div>
+          </template>
+        </section>
+        <section class="note-main">
+          <h1>Quick notes</h1>
+          <textarea id="notes"></textarea>
+        </section>
+      </div>
+    </main>
   </body>
 </html>

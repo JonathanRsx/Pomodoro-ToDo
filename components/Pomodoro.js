@@ -1,20 +1,18 @@
 import { cloneTemplate } from "../function/dom.js";
 
 export class Pomodoro {
-  #state;
+  #states = {
+    focus: { title: "Focus", color: "#9D1DF3", duration: 60 * 2 },
+    shortBreak: { title: "Short Break", color: "#442FFC", duration: 60 * 1 },
+    longBreak: { title: "Long Break", color: "#04CE9F", duration: 60 * 5 },
+  };
+  #currentState;
   #currentTime;
-  #focus = 60 * 2;
-  #shortBreak = 60 * 1;
-  #longBreak = 60 * 5;
-  #startTime = 0;
   #focusCount = 0;
   #element;
   #interval;
 
   constructor() {
-    //this.#state = "Focus";
-    //this.#startTime = this.#focus;
-    //this.#currentTime = this.#startTime;
     const pomodoro = cloneTemplate("pomodoro-template").firstElementChild;
     const buttonStart = pomodoro.querySelector("#start");
     buttonStart.addEventListener("click", () => this.onTimerStart());
@@ -22,10 +20,10 @@ export class Pomodoro {
     buttonPause.addEventListener("click", () => this.onPause());
     const buttonSkip = pomodoro.querySelector("#skip");
     buttonSkip.addEventListener("click", () => this.changeState());
-    // const timer = pomodoro.querySelector("#pomodoro-value");
-    // timer.innerText = this.#focus;
+
     document.getElementById("pomodoro-main").append(pomodoro);
     this.#element = pomodoro;
+    this.#currentState = this.#states.longBreak;
     this.changeState();
   }
 
@@ -37,13 +35,15 @@ export class Pomodoro {
 
     this.#interval = setInterval(() => {
       this.#currentTime--;
-      console.log("intervalle", this.#currentTime);
+
       document.getElementById("pomodoro-value").innerText = this.formatTime(
         this.#currentTime
       );
-      console.log(progress);
+
       progress.style.width = `${
-        ((this.#startTime - this.#currentTime) / this.#startTime) * 100
+        ((this.#currentState.duration - this.#currentTime) /
+          this.#currentState.duration) *
+        100
       }%`;
 
       if (this.#currentTime === -1) {
@@ -59,26 +59,27 @@ export class Pomodoro {
     this.#element.querySelector("#skip").setAttribute("hidden", "");
     this.#element.querySelector("#pause").setAttribute("hidden", "");
     this.#element.querySelector("#progress").style.width = 0;
-    if (this.#state === "Focus") {
+    if (this.#currentState.title === "Focus") {
       if (this.#focusCount === 3) {
-        this.#state = "Long Break";
-        this.#startTime = this.#longBreak;
+        this.#currentState = this.#states.longBreak;
 
         this.#focusCount = 0;
       } else {
-        this.#state = "Short Break";
-        this.#startTime = this.#shortBreak;
+        this.#currentState = this.#states.shortBreak;
       }
     } else {
-      this.#state = "Focus";
+      this.#currentState = this.#states.focus;
       this.#focusCount++;
-      this.#startTime = this.#focus;
     }
-    this.#currentTime = this.#startTime;
+    this.#currentTime = this.#currentState.duration;
+    // console.log(this.#currentState);
     this.#element.querySelector("#pomodoro-value").innerText = this.formatTime(
-      this.#startTime
+      this.#currentState.duration
     );
-    this.#element.querySelector("#session").innerText = this.#state;
+    this.#element.querySelector("#session").innerText =
+      this.#currentState.title;
+    this.#element.querySelector(".indicator").style.backgroundColor =
+      this.#currentState.color;
   }
 
   onPause() {
