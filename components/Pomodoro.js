@@ -2,9 +2,9 @@ import { cloneTemplate } from "../function/dom.js";
 
 export class Pomodoro {
   #states = {
-    focus: { title: "Focus", color: "#9D1DF3", duration: 60 * 2 },
-    shortBreak: { title: "Short Break", color: "#442FFC", duration: 60 * 1 },
-    longBreak: { title: "Long Break", color: "#04CE9F", duration: 60 * 5 },
+    focus: { title: "Focus", color: "#9D1DF3", duration: 60 * 25 },
+    shortBreak: { title: "Short Break", color: "#442FFC", duration: 60 * 5 },
+    longBreak: { title: "Long Break", color: "#04CE9F", duration: 60 * 15 },
   };
   #currentState;
   #currentTime;

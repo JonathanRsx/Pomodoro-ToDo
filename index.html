@@ -18,11 +18,17 @@
     <main>
       <section class="todolist-main" id="todolist">
         <h1>To Do list</h1>
-        <h2>To Do</h2>
+        <div class="title">
+          <h2>To Do</h2>
+          <span id="todo-title" class="total">0</span>
+        </div>
         <ul id="list-not-completed" class="todo-list"></ul>
         <button id="add-todo" class="add-todo">Add to do</button>
         <!-- Tâches complétées -->
-        <h2>Done</h2>
+        <div class="title">
+          <h2>Done</h2>
+          <span id="done-title" class="total">0</span>
+        </div>
         <ul id="list-completed" class="todo-list completed"></ul>
 
         <template id="todolist-item">

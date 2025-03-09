@@ -38,7 +38,6 @@ h1 {
 h2 {
   font-size: var(--font-size-sm);
   margin: 0;
-  margin-top: var(--spacing-md);
   font-weight: 600;
 }
 
@@ -84,7 +83,6 @@ main {
   max-width: 360px;
   gap: var(--spacing-xl);
   flex: 1;
-  height: 100vh;
 }
 
 .pomodoro-main {
@@ -162,6 +160,17 @@ main {
   max-width: 600px;
   flex: 1;
   padding: var(--spacing-lg);
+
+  .title {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    padding-top: var(--spacing-lg);
+
+    .total {
+      color: var(--color-text-muted);
+    }
+  }
 
   ul {
     display: flex;
@@ -246,8 +255,5 @@ main {
   background: none;
   pointer-events: none;
   text-decoration: line-through;
-}
-
-.todo-list.completed .todo-item {
   opacity: 0.6;
 }

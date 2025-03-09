@@ -30,6 +30,7 @@ export class ToDoList {
       }
     });
 
+    this.#count();
     // event listener
 
     this.#listNotCompleted.addEventListener(
@@ -113,6 +114,7 @@ export class ToDoList {
 
   #onUpdate() {
     localStorage.setItem("todos", JSON.stringify(this.#todolist));
+    this.#count();
   }
 
   #onDelete(todo) {
@@ -139,5 +141,14 @@ export class ToDoList {
       : this.#listNotCompleted;
     targetList.append(item);
     this.#onUpdate();
+  }
+
+  #count() {
+    document.getElementById("todo-title").innerHTML = this.#todolist.filter(
+      (t) => !t.completed
+    ).length;
+    document.getElementById("done-title").innerHTML = this.#todolist.filter(
+      (t) => t.completed
+    ).length;
   }
 }
